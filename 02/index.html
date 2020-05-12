@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ânderson Guimarães Soares - Desafio Formulario de Lancamento de Notas</title>
+</head>
+
+<style>
+    .input-md{
+        width: 60px
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>LANÇAMENTO DE NOTAS</h1>
+        <form id="formulario-lancamentos-notas" action="post">
+            <label for="disciplina">Selecione a Disciplina: </label>
+            <select name="disciplina" id="disciplina">
+                <option value="0">Introdução à informática</option>
+                <option value="1">Linguagens de Programação</option>
+                <option value="2">Programação de Computadores</option>
+            </select>
+
+            <table id="dados-alunos">
+                <tr>
+                    <th>Nome do Aluno</th>
+                    <th>Prova 1</th>
+                    <th>Prova 2</th>
+                    <th>Exame</th>
+                    <th>Média</th>
+                    <th>Faltas</th>
+                </tr>
+                <tr id="joana">
+                    <td>Joana da Silva</td>
+                    <td>
+                        <input id="prova01-joana" type="number" required class="input-md" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" min="0" max="10">                        
+                    </td>
+                    <td>
+                        <input id="prova02-joana" type="number" required class="input-md" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" min="0" max="10">
+                    </td>
+                    <td>
+                        <input id="exame-joana" class="input-md" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" min="0" max="10" min="0" max="10" >
+                    </td>
+                    <td>
+                        <input id="media-joana" readonly class="input-md" type="text">
+                    </td>
+                    <td>
+                        <input pattern="[0-9]" id="faltas-joana" class="input-md" type="number" required min="0" max="16">
+                    </td>
+                </tr>
+                <tr id="maria">
+                    <td>Maria do Socorro</td>
+                    <td>
+                        <input id="prova01-maria" type="number" required class="input-md" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" min="0" max="10">                        
+                    </td>
+                    <td>
+                        <input id="prova02-maria" type="number" required class="input-md" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" min="0" max="10">
+                    </td>
+                    <td>
+                        <input id="exame-maria" class="input-md" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" min="0" max="10" min="0" max="10" >
+                    </td>
+                    <td>
+                        <input id="media-maria" readonly class="input-md" type="text">
+                    </td>
+                    <td>
+                        <input pattern="[0-9]" id="faltas-maria" class="input-md" type="number" required min="0" max="16">
+                    </td>
+                </tr>
+                <tr id="pedro">
+                    <td>Pedro Santos</td>
+                    <td>
+                        <input id="prova01-pedro" type="number" required class="input-md" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" min="0" max="10">                        
+                    </td>
+                    <td>
+                        <input id="prova02-pedro" type="number" required class="input-md" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" min="0" max="10">
+                    </td>
+                    <td>
+                        <input id="exame-pedro" class="input-md" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" min="0" max="10" min="0" max="10" >
+                    </td>
+                    <td>
+                        <input id="media-pedro" readonly class="input-md" type="text">
+                    </td>
+                    <td>
+                        <input  pattern="[0-9]" id="faltas-pedro" class="input-md" type="number" required min="0" max="16">
+                    </td>
+                </tr>
+            </table>
+
+            <button id="LancarDados">Salvar</button>
+            <button id="LimparCampos" type="button"> Limpar </button>            
+        </form>
+    </div>
+
+    <script>
+        const somarMedia = (aluno)=> {
+            let prova01 = document.getElementById(`prova01-${aluno}`);
+            let prova02 = document.getElementById(`prova02-${aluno}`);
+            let exame = document.getElementById(`exame-${aluno}`);
+            let notaProva01 = 0;
+            let notaProva02 = 0;
+            let notaExame = 0;
+
+            try {                
+                notaProva01 = parseFloat(prova01.value.replace(/,/g, '.') || 0);
+                notaProva02 = parseFloat(prova02.value.replace(/,/g, '.') || 0);   
+                notaExame = parseFloat(exame.value.replace(/,/g, '.') || 0);   
+
+                media = ((notaProva01 + notaProva02) / 2).toFixed(2);
+
+                document.getElementById(`media-${aluno}`).value = media > notaExame ? media : notaExame;
+
+            } catch (error) {
+                document.getElementById(`media-${aluno}`).value = "S/N"                   
+            }            
+        }
+
+        //Metodo para pegar os inputs dinamicamente        
+        const inserirListener = (aluno) => {            
+            let tr = document.getElementById(`${aluno}`);
+
+            for (const item of tr.getElementsByTagName("input")) {
+                item.id;
+
+                if(item.id.indexOf("media") < 0){
+                    document.getElementById(item.id).addEventListener("keyup", () => {   
+                        somarMedia(aluno);                     
+                    });
+
+                    document.getElementById(item.id).addEventListener("change", () => {   
+                    somarMedia(aluno);                     
+                });
+                }                                
+            }
+        }
+
+        // //Metodo para Limpar os campos do formulário
+        const limparCampos = () => {
+            document.getElementById("formulario-lancamentos-notas").reset();
+        }
+
+        document.getElementById("LimparCampos").addEventListener("click", () => {  
+            limparCampos();            
+        });
+
+        //Varre todos TR dentro de #dados-alunos e verifica se é uma coluna referente a Aluno
+        for (const itemTr of document.getElementById("dados-alunos").getElementsByTagName("tr")) {             
+            if(itemTr.id != null && itemTr.id != ""){
+                inserirListener(itemTr.id);
+            }
+        }                      
+    </script>
+</body>
+
+</html>
