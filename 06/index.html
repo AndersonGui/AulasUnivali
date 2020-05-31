@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ânderson Guimarães Soares - Atividade Semana 30/05/2020</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body id="app">
+    <button id="change-page-color" class="button-default" type="button">Trocar Cor da Página</button>
+
+    <script>
+        document.getElementById("change-page-color").addEventListener("click", () => {
+            let app = document.getElementById("app");
+            let nameRemove = "";
+            let nameAdd = "";
+
+            if(app.classList.contains('bg-blue')){
+                nameRemove = "bg-blue";
+                nameAdd = "bg-red";
+            }else{
+                nameRemove = "bg-red";
+                nameAdd = "bg-blue";
+            }
+
+            app.classList.remove(nameRemove);
+            app.classList.add(nameAdd);
+        });
+    </script>
+</body>
+
+</html>
