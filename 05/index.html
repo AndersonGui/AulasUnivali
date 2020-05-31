@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ânderson Guimarães Soares - Atividade Semana 30/05/2020</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Pagina Selecionada <span id='current-page'>1</span></h2>
+        <div id="buttons">
+            <button class="button-default button-action" id="previous-page" type="button">Anterior</button>
+            <button class="button-default button-active" type="button">1</button>
+            <button class="button-default" type="button">2</button>
+            <button class="button-default" type="button">3</button>
+            <button class="button-default" type="button">4</button>
+            <button class="button-default" type="button">5</button>
+            <button class="button-default" type="button">6</button>
+            <button class="button-default button-action" id="next-page" type="button">Próxima</button>
+        </div>
+    </div>
+
+    <script>
+        let buttons = document.getElementById("buttons").getElementsByTagName("button");
+
+        activeButton = (buttonToActive) => {
+            for (let i = 1; i < (buttons.length - 1); i++) {
+                const button = buttons[i];
+                if (button.classList.contains('button-active')) {
+                    button.classList.remove('button-active');
+                }
+            }
+
+            buttonToActive.classList.add('button-active');
+            changePage(buttonToActive.innerText);
+        }
+    
+        changePage = (page) => {
+            document.getElementById('current-page').innerText = page;
+        }
+
+        document.getElementById("previous-page").addEventListener("click", () => {
+            let changed = false;
+
+            for (let i = buttons.length - 2; i > 0; i--) {
+                if (changed) {
+                    return;
+                }
+
+                let button = buttons[i];
+
+                let buttonChange = button.classList.contains('button-active');
+                if (buttonChange) {
+                    button.classList.remove('button-active');
+
+                    let buttonToActive = null;
+
+                    if (i > 1) {
+                        changed = true;
+                        buttonToActive = buttons[i - 1];
+                    } else {
+                        buttonToActive = buttons[buttons.length - 2];
+                    }
+
+                    buttonToActive.classList.add('button-active');
+                    changePage(buttonToActive.innerText);
+                }
+            }
+        });
+
+        document.getElementById("next-page").addEventListener("click", () => {
+            let changed = false;
+
+            for (let i = 1; i < (buttons.length - 1); i++) {
+                if (changed) {
+                    return;
+                }
+
+                let botao = buttons[i];
+
+                let buttonChange = botao.classList.contains('button-active');
+                if (buttonChange) {
+                    botao.classList.remove('button-active');
+
+                    let buttonToActive = null;
+
+                    if (i + 1 < (buttons.length - 1)) {
+                        changed = true;
+                        buttonToActive = buttons[i + 1];
+                    } else {
+                        buttonToActive = buttons[1];
+                    }
+
+                    buttonToActive.classList.add('button-active');
+                    changePage(buttonToActive.innerText);
+                }
+            }
+        });
+
+        for (let i = 1; i < (buttons.length - 1); i++) {
+            let button = buttons[i];
+            button.addEventListener('click', () => {
+                activeButton(button);
+            })
+        }
+    </script>
+</body>
+
+</html>

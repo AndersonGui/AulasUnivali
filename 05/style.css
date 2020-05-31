@@ -1,0 +1,36 @@
+.container{
+    width: 600px;
+}
+
+.button-default{
+    background-color: #fbfbfb;
+    color: #4a8ef3;
+    padding: 6px 20px;
+    cursor: pointer;
+    border: solid 1px #dadada;
+    float: left;
+    font-weight: 600;
+}
+
+.button-default:hover{
+    background-color: #dadada
+}
+
+.button-default:focus{
+    background-color: #dadada;
+    border: solid 1px #aaaaaa;
+    outline: none;
+}
+
+.button-active{
+    background-color: #dadada
+}
+
+.button-action:hover, .button-action:focus{
+    background-color: #fbfbfb;
+    border: solid 1px #dadada;
+}
+
+.button-action:active {
+    background-color: #ebebeb;
+}
