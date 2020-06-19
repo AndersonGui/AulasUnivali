@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 05 - Desafio Selecionar Cidade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        Obs: Olhar código no repositorio, pois usa
+        <strong>Selecione o Estado</strong>
+        <br>
+        <select name="states" id="states">
+            <option value="">Selecione um estado</option>
+            <option value="01">Paraná</option>
+            <option value="02">São Paulo</option>
+            <option value="03">Rio de Janeiro</option>
+            <option value="04">Minas Gerais</option>
+        </select>
+
+        <br>
+        <br>
+
+        <strong>Selecione o Estado</strong>
+        <br>
+        <select disabled name="cities" id="cities">
+            <option value="">Selecione uma cidade</option>
+        </select>
+
+        <h2 class="hide" id="cityText">Cidade selecionada: <span id="city"></span></h2>
+    </div>
+
+    <script>
+        document.getElementById("states").addEventListener("change", (stateSelected) => {
+            let cities = document.getElementById("cities");
+
+            if (stateSelected.target.value == "") {
+                cities.setAttribute("disabled", "disabled");
+                let opts = cities.options;
+
+                for (let opt, j = 0; opt = opts[j]; j++) {
+                    if (opt.value == "") {
+                        cities.selectedIndex = j;
+                        break;
+                    }
+                }
+
+                cities.dispatchEvent(new Event("change"));
+                return;
+            }
+
+            let request = new XMLHttpRequest();
+            request.onreadystatechange = () => {
+                if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                    document.getElementById("cities").removeAttribute("disabled");
+                    clearCityOptions();
+
+                    let citiesResult = JSON.parse(request.response);
+
+                    for (let index = 0; index < citiesResult.length; index++) {
+                        const city = citiesResult[index];
+
+                        let option = document.createElement("option");
+                        option.text = city;
+                        option.value = city;
+                        cities.add(option);
+                    }
+
+                    cities.dispatchEvent(new Event("change"));
+                }
+            }
+            request.open("POST", "cities.php", true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send('ESTADO=' + stateSelected.target.value);
+        })
+
+        document.getElementById("cities").addEventListener("change", (citySelected) => {
+            let cityText = document.getElementById("cityText");
+
+            if (citySelected.target.value != "") {
+                document.getElementById("city").innerText = citySelected.target.value;
+                cityText.classList.remove("hide");
+            } else {
+                cityText.classList.add("hide");
+            }
+        })
+
+
+        clearCityOptions = () => {
+            let cities = document.getElementById("cities");
+
+            for (let i = cities.length - 1; cities.length > 1; i--) {
+                const city = cities[i];
+                if (city.value == "") {
+                    cities.selectedIndex = i;
+                }
+
+                cities.options.remove(i);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
