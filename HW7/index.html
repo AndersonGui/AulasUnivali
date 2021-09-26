@@ -5,80 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <title>HW7</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
-        body {
-            background-color: #E9EDF6;
-        }
-
-        .container {
-            background-color: #E9EDF6;
-            width: 100%;
-            padding: 0 2%;
-        }
-
-        .logo {
-            display: inline-block;
-        }
-
-        header {
-            background-color: #000;
-            padding: 4px 2%;
-        }
-
-        h1 {
-            color: #FFF
-        }
-
-        .nav-top {
-            display: inline-block;
-            margin: 0 2%
-        }
-
-        .input-players {
-            background-color: #000;
-            margin: 1%;
-            width: 30%;
-            border-radius: 10px;
-        }
-
-        .botao-gerar {
-            background-color: #B6B0CA;
-            border-radius: 5px;
-            height: 27px;
-            width: 30%;
-            text-shadow: none;
-            border-style: none;
-            font-weight: 700;
-            margin-top: 2%
-        }
-
-        .botao-novo {
-            background-color: #AE514C;
-            border-radius: 5px;
-            height: 27px;
-            width: 30%;
-            text-shadow: none;
-            border-style: none;
-            font-weight: 700;
-            margin-top: 2%;
-            margin-bottom: 2%;
-        }
-    </style>
 </head>
 
 
 
 <body>
     <header>
-        <div style="text-align: center; display: inline-block; width: 100%;">
-            <img style="float: left;" src="imgs/NavBarIcon.png" alt="Logo">
-            <div style="text-align: center; padding-top: 1%;">
+
+        <div style="text-align: center; display: flex; width: 100%;">
+            <img style="float: left; width: 14%;" src="imgs/NavBarIcon.png" alt="Logo">
+            <div style="text-align: center; padding-top: 1%; width: 72%;">
                 <nav class="nav-top">
                     <h1>Gerador de Times</h1>
                 </nav>
@@ -89,78 +30,174 @@
                     <h1>Galeria</h1>
                 </nav>
             </div>
+            <span style="width: 14%;"></span>
         </div>
     </header>
     <nav style="text-align: center; width: 100%; margin-top: 1%; background-color: #000; padding: 1% 0;">
         <h1>Gerador de Times</h1>
     </nav>
-    <section class="input-players">
-        <p style="color:white; text-align: center; padding-top: 5%;">Insira o nome dos jogadores<br /> que serão
-            divinidos em times:</p>
+    <div style="display: flex">
+        <div style="width: 30%; margin: 1%">
+            <section class="input-players">
+                <p class="section-title">Insira o nome dos jogadores<br /> que serão
+                    divinidos em times:</p>
 
 
-        <div style="margin-top: 2%; padding:0 4%;">
-            <p style="color: #FFF">Jogador 1:</p>
-            <input style="width: 100%; background-color: #E9EDF6; height: 25px;" type="text" />
+                <div style="margin-top: 2%; padding:0 4%;">
+                    <p style="color: #FFF">Jogador 1:</p>
+                    <input class="input" type="text" />
+                </div>
+
+                <div style="margin-top: 2%; padding:0 4%;">
+                    <p style="color: #FFF">Jogador 2:</p>
+                    <input class="input" type="text" />
+                </div>
+
+                <div style="margin-top: 2%; padding:0 4%;">
+                    <p style="color: #FFF">Jogador 3:</p>
+                    <input class="input" type="text" />
+                </div>
+
+                <div style="margin-top: 2%; padding:0 4%;">
+                    <p style="color: #FFF">Jogador 4:</p>
+                    <input class="input" type="text" />
+                </div>
+
+                <div style="margin-top: 2%; padding:0 4%;">
+                    <p style="color: #FFF">Jogador 5:</p>
+                    <input class="input" type="text" />
+                </div>
+
+                <div style="margin-top: 2%; padding:0 4%;">
+                    <p style="color: #FFF">Jogador 6:</p>
+                    <input class="input" type="text" />
+                </div>
+
+                <div style="margin-top: 2%; padding:0 4%;">
+                    <p style="color: #FFF">Jogador 7:</p>
+                    <input class="input" type="text" />
+                </div>
+
+                <div style="margin-top: 2%; padding:0 4%;">
+                    <p style="color: #FFF">Jogador 8:</p>
+                    <input class="input" type="text" />
+                </div>
+
+                <div style="margin-top: 2%; padding:0 4%;">
+                    <p style="color: #FFF">Jogador 9:</p>
+                    <input class="input" type="text" />
+                </div>
+
+                <div style="margin-top: 2%; padding:0 4%;">
+                    <p style="color: #FFF">Jogador 10:</p>
+                    <input class="input" type="text" />
+                </div>
+
+                <div style="text-align: center;">
+                    <button class="botao-gerar" type="button">
+                        Gerar Times
+                    </button>\
+                    <br />
+                    <button class="botao-novo" type="button">
+                        Gerar Novo Time
+                    </button>
+                </div>
+            </section>
         </div>
+        <div style="width: 66%; margin: 1%">
+            <section class="team-players">
+                <p class="title-team-players">Time dos Atacantes</p>
 
-        <div style="margin-top: 2%; padding:0 4%;">
-            <p style="color: #FFF">Jogador 2:</p>
-            <input style="width: 100%; background-color: #E9EDF6; height: 25px" type="text" />
+                <div style="display: flex">
+                    <div class="input-box">
+                        <p style="color: #FFF">Jogador 1:</p>
+                        <input class="input" type="text" />
+                    </div>
+
+                    <div class="input-box">
+                        <p style="color: #FFF">Jogador 2:</p>
+                        <input class="input" type="text" />
+                    </div>
+
+                    <div class="input-box">
+                        <p style="color: #FFF">Jogador 3:</p>
+                        <input class="input" type="text" />
+                    </div>
+
+                    <div class="input-box">
+                        <p style="color: #FFF">Jogador 4:</p>
+                        <input class="input" type="text" />
+                    </div>
+
+                    <div class="input-box">
+                        <p style="color: #FFF">Jogador 5:</p>
+                        <input class="input" type="text" />
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="team-players">
+                <p class="title-team-players">Time dos Defensores</p>
+
+                <div style="display: flex">
+                    <div class="input-box">
+                        <p style="color: #FFF">Jogador 1:</p>
+                        <input class="input" type="text" />
+                    </div>
+
+                    <div class="input-box">
+                        <p style="color: #FFF">Jogador 2:</p>
+                        <input class="input" type="text" />
+                    </div>
+
+                    <div class="input-box">
+                        <p style="color: #FFF">Jogador 3:</p>
+                        <input class="input" type="text" />
+                    </div>
+
+                    <div class="input-box">
+                        <p style="color: #FFF">Jogador 4:</p>
+                        <input class="input" type="text" />
+                    </div>
+
+                    <div class="input-box">
+                        <p style="color: #FFF">Jogador 5:</p>
+                        <input class="input" type="text" />
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="team-players">
+                <p class="title-team-players">Mapa Sorteado<p>
+
+                <div style="display: flex; justify-content: space-evenly;">
+                    <div class="map-box">
+                        <img src="./imgs/Dust2.png" alt="Dust 2">
+                        <div class="box-map-name">
+                            <p>Dust II</p>
+                        </div>
+                    </div>
+
+                    <div class="map-box">
+                        <img src="./imgs/Inferno.png" alt="Inferno">
+                        <div class="box-map-name">
+                            <p>Inferno</p>
+                        </div>
+                    </div>
+
+                    <div class="map-box">
+                        <img src="./imgs/Mirage.png" alt="Mirage">
+                        <div class="box-map-name">
+                            <p>Mirage</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
         </div>
-
-        <div style="margin-top: 2%; padding:0 4%;">
-            <p style="color: #FFF">Jogador 3:</p>
-            <input style="width: 100%; background-color: #E9EDF6; height: 25px" type="text" />
-        </div>
-
-        <div style="margin-top: 2%; padding:0 4%;">
-            <p style="color: #FFF">Jogador 4:</p>
-            <input style="width: 100%; background-color: #E9EDF6; height: 25px" type="text" />
-        </div>
-
-        <div style="margin-top: 2%; padding:0 4%;">
-            <p style="color: #FFF">Jogador 5:</p>
-            <input style="width: 100%; background-color: #E9EDF6; height: 25px" type="text" />
-        </div>
-
-        <div style="margin-top: 2%; padding:0 4%;">
-            <p style="color: #FFF">Jogador 6:</p>
-            <input style="width: 100%; background-color: #E9EDF6; height: 25px" type="text" />
-        </div>
-
-        <div style="margin-top: 2%; padding:0 4%;">
-            <p style="color: #FFF">Jogador 7:</p>
-            <input style="width: 100%; background-color: #E9EDF6; height: 25px" type="text" />
-        </div>
-
-        <div style="margin-top: 2%; padding:0 4%;">
-            <p style="color: #FFF">Jogador 8:</p>
-            <input style="width: 100%; background-color: #E9EDF6; height: 25px" type="text" />
-        </div>
-
-        <div style="margin-top: 2%; padding:0 4%;">
-            <p style="color: #FFF">Jogador 9:</p>
-            <input style="width: 100%; background-color: #E9EDF6; height: 25px" type="text" />
-        </div>
-
-        <div style="margin-top: 2%; padding:0 4%;">
-            <p style="color: #FFF">Jogador 10:</p>
-            <input style="width: 100%; background-color: #E9EDF6; height: 25px" type="text" />
-        </div>
-
-        <div style="text-align: center;">
-            <button class="botao-gerar" type="button">
-                Gerar Times
-            </button>\
-            <br />
-            <button class="botao-novo" type="button">
-                Gerar Novo Time
-            </button>
-        </div>
-
-
-    </section>
+    </div>
 </body>
 
 </html>
